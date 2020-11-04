@@ -1,6 +1,7 @@
 window.addEventListener('load', _ => {
   const rotation = [0, 0, 0];
-  const ids = ['g1074', 'g1057', 'g1040']
+  const ids = ['g1074', 'g1057', 'g1040'];
+  const intervals = [undefined, undefined, undefined];
   const outerBtn = document.getElementById('outer-btn');
   const middleBtn = document.getElementById('middle-btn');
   const innerBtn = document.getElementById('inner-btn');
@@ -13,10 +14,20 @@ window.addEventListener('load', _ => {
   innerBtn.addEventListener('click', rotate(2, +90));
   function rotate(rotIdx, angle) {
     return _ => {
-      const rot = (rotation[rotIdx] + angle) % 360;
-      rotation[rotIdx] = rot;
+      const rot = (rotation[rotIdx] + angle);
       const toRotate = svgObject.contentDocument.getElementById(ids[rotIdx]);
-      toRotate.setAttribute("transform", `rotate(${rot}, 50.27036,50.27036)`)
+      let current = rotation[rotIdx];
+      if (intervals[rotIdx]) {
+        clearInterval(intervals[rotIdx])
+      }
+      intervals[rotIdx] = setInterval(_ => {
+        current += Math.min(2, rot - rotation[rotIdx]);
+        toRotate.setAttribute("transform", `rotate(${current}, 50.27036,50.27036)`);
+        if (rot - rotation[rotIdx] < 0.01) {
+          rotation[rotIdx] = rot % 360;
+          clearInterval(intervals[rotIdx]);
+        }
+      }, 33);
     }
   }
 });
