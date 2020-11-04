@@ -6,10 +6,15 @@ window.addEventListener('load', _ => {
   const innerBtn = document.getElementById('inner-btn');
 
   rotate(0, +180)();
+  rotate(1, +180)();
+  rotate(1, +180)();
   outerBtn.addEventListener('click', rotate(0, +90));
+  middleBtn.addEventListener('click', rotate(1, +90));
+  innerBtn.addEventListener('click', rotate(2, +90));
 
   function rotate(rotIdx, angle) {
     return _ => {
+      console.log(`rotate ${rotIdx} by ${angle}`);
       const rot = (rotation[rotIdx] + angle) % 360;
       rotation[rotIdx] = rot;
       const svgObject = document.getElementById('svg-object').documentContent;
