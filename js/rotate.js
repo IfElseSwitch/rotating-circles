@@ -17,7 +17,7 @@ window.addEventListener('load', _ => {
       console.log(`rotate ${rotIdx} by ${angle}`);
       const rot = (rotation[rotIdx] + angle) % 360;
       rotation[rotIdx] = rot;
-      const svgObject = document.getElementById('svg-object').documentContent;
+      const svgObject = document.getElementById('svg-object').contentDocument;
       const toRotate = svgObject.getElementById(ids[rotIdx]);
       toRotate.setAttribute("transform", `rotate(${rot}, 50.27036,50.27036)`)
     }
