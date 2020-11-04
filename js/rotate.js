@@ -21,9 +21,9 @@ window.addEventListener('load', _ => {
         clearInterval(intervals[rotIdx])
       }
       intervals[rotIdx] = setInterval(_ => {
-        current += Math.min(2, rot - rotation[rotIdx]);
+        current += Math.min(2, rot - current);
         toRotate.setAttribute("transform", `rotate(${current}, 50.27036,50.27036)`);
-        if (rot - rotation[rotIdx] < 0.01) {
+        if (rot - current < 0.01) {
           rotation[rotIdx] = rot % 360;
           clearInterval(intervals[rotIdx]);
         }
