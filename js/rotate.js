@@ -1,6 +1,6 @@
 window.addEventListener('load', _ => {
-  const rotation = [0, 0, 0]
-  const ids = ['g1074', '', '']
+  const rotation = [0, 0, 0];
+  const ids = ['g1074', 'g1057', 'g1040']
   const outerBtn = document.getElementById('outer-btn');
   const middleBtn = document.getElementById('middle-btn');
   const innerBtn = document.getElementById('inner-btn');
